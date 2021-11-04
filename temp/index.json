@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "block-status": "/compents/block-status",
+    "view-empty": "/compents/view-empty/view-empty"
+  }
+}

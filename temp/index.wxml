@@ -1,0 +1,6 @@
+<view>
+  <block-status accountData="{{accountData1}}" isEmpty="{{isEmpty}}">
+  </block-status>
+  <view-empty desc="暂无数据" bindempty="bindEmpty">
+  </view-empty>
+</view>
