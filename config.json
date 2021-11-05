@@ -9,13 +9,15 @@
             "id": 2,
             "pid": 1,
             "type": "compent",
-            "cname": "block-status",
-            "cpath": "/compents/block-status",
+            "compentId": "A",
+            "rename": "WX-STATUS",
+            "slot": "main",
             "properties": [
                 {
                     "prop": "accountData",
                     "rename": "accountData1",
                     "variable": true,
+                    "isImport": true,
                     "value": [
                         {
                             "index": 0,
@@ -58,7 +60,6 @@
                             }
                         }
                     ],
-                    "isImport": true,
                     "format": {
                         "funcname": "setStatuts",
                         "rename": "setStatuts1",
@@ -78,8 +79,7 @@
             "id": 3,
             "pid": 1,
             "type": "compent",
-            "cname": "view-empty",
-            "cpath": "/compents/view-empty/view-empty",
+            "compentId": "B",
             "methods": [
                 {
                     "type": "bind",
@@ -92,6 +92,11 @@
                     "prop": "desc",
                     "rename": "",
                     "value": "暂无数据"
+                },
+                {
+                    "prop": "showBtn",
+                    "rename": "",
+                    "value": true
                 }
             ]
         }
