@@ -150,7 +150,7 @@ function getJsData(childrens, propData = {}, imData = {}, methodData = {}, index
                 }
                 if (properties[i].isImport) {
                     let CONFIGPROP = prop.toLocaleUpperCase()
-                    if (imData['./index.config.js']) {
+                    if (imData['./index.config.js'] && imData['./index.config.js'].indexOf(CONFIGPROP) === -1) {
                         imData['./index.config.js'] += `${CONFIGPROP}, `
                     } else {
                         imData['./index.config.js'] = `${CONFIGPROP}, `
@@ -247,6 +247,9 @@ function setPageData(config, tempJson) {
             if (element.compentId && tempJson[element.compentId]) {
                 element.cname = tempJson[element.compentId].cname
                 element.cpath = tempJson[element.compentId].cpath
+            }
+            if (element.childrens && element.childrens.length > 0) {
+                setPageData(element.childrens, tempJson)
             }
         })
     } else if (config) {

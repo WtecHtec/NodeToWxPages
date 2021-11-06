@@ -114,6 +114,120 @@ const BgPage = {
             "id": 2,
             "pid": 1,
             "type": "compent",
+            "compentId": "E",
+            "properties": [
+                {
+                    "prop": "bottomSpac",
+                    "value": true
+                },
+                {
+                    "prop": "pb",
+                    "value": '32'
+                },
+                {
+                    "prop": "bgcolor",
+                    "value": '#fff'
+                },
+
+            ],
+            "childrens": [
+                {
+                    "id": 2,
+                    "pid": 1,
+                    "type": "compent",
+                    "compentId": "D",
+                    "slot": "header",
+                    "properties": [
+                        {
+                            "prop": "title",
+                            "value": "基础服务"
+                        },
+                        {
+                            "prop": "left-icon",
+                            "value": "127"
+                        },
+                        {
+                            "prop": "is-link",
+                            "value": true
+                        }
+                    ],
+                },
+                {
+                    "id": 2,
+                    "pid": 1,
+                    "type": "compent",
+                    "compentId": "A",
+                    "rename": "WX-STATUS",
+                    "slot": "content",
+                    "properties": [
+                        {
+                            "prop": "accountData",
+                            "rename": "accountDataByPart",
+                            "variable": true,
+                            "isImport": true,
+                            "value": [
+                                {
+                                    "index": 0,
+                                    "title": "高价值占比",
+                                    "deftitle": "高价值占比",
+                                    "exttitle": "日均高价值占比",
+                                    "isNumber": true,
+                                    "showTrend": true,
+                                    "per": {
+                                        "valtype": "sum",
+                                        "filed": "qq_ban_high_value_per_double_1d_dbl",
+                                        "status": 0,
+                                        "value": ""
+                                    },
+                                    "value": {
+                                        "isPer": true,
+                                        "filed": "qq_ban_high_value_per_double",
+                                        "num": "",
+                                        "unit": ""
+                                    }
+                                },
+                                {
+                                    "index": 1,
+                                    "title": "首解率",
+                                    "deftitle": "首解率",
+                                    "exttitle": "日均首解率",
+                                    "isNumber": true,
+                                    "showTrend": true,
+                                    "per": {
+                                        "valtype": "sum",
+                                        "filed": "qq_ban_ivr_once_per_double_1d_dbl",
+                                        "status": 0,
+                                        "value": ""
+                                    },
+                                    "value": {
+                                        "isPer": true,
+                                        "filed": "qq_ban_ivr_once_per_double",
+                                        "num": "",
+                                        "unit": ""
+                                    }
+                                }
+                            ],
+                            "format": {
+                                "funcname": "setStatuts",
+                                "rename": "setStatutsByPart",
+                                "path": "/utils/util.js",
+                                "otherparams": "dataSrouce,"
+                            }
+                        },
+                        {
+                            "prop": "isEmpty",
+                            "rename": "",
+                            "variable": false,
+                            "value": false
+                        }
+                    ]
+                },
+            ]
+        },
+        {
+            "id": 2,
+            "pid": 1,
+            "type": "compent",
             "compentId": "A",
             "rename": "WX-STATUS",
             "slot": "main",

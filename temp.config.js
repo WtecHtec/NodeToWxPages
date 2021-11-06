@@ -95,6 +95,59 @@ const temJson = {
             },
         ]
     },
+    "D": {
+        "id": "D",
+        "cname": "m-cell",
+        "cpath": '/components/common/cell',
+        "methods": [
+            {
+                "type": "bind",
+                "name": "clicktitle",
+            }
+        ],
+        "properties": [
+            {
+                "prop": "title",
+                "type": String,
+            },
+            {
+                "prop": "left-icon",
+                "type": String,
+            },
+            {
+                "prop": "left-icon-color",
+                "type": String,
+            },
+            {
+                "prop": "is-link",
+                "type": String,
+            },
+        ]
+    },
+    "E": {
+        "id": "E",
+        "cname": "m-part",
+        "cpath": '/components/common/part',
+        "slot": ["header", "content"],
+        "properties": [
+            {
+                "prop": "bottomSpac",
+                "type": Boolean,
+            },
+            {
+                "prop": "topSpac",
+                "type": String,
+            },
+            {
+                "prop": "pb",
+                "type": String,
+            },
+            {
+                "prop": "bgcolor",
+                "type": String,
+            },
+        ]
+    },
 }
 module.exports = {
     temDatas,
