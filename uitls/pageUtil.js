@@ -195,7 +195,7 @@ function getJsData(childrens, propData = {}, imData = {}, methodData = {}, index
         let methods = childrens[i].methods
         if (methods && methods.length > 0) {
             methods.forEach(element => {
-                methodData.value += `${element.event} (){ }`
+                methodData.value += `${element.event} (event){ }`
                 caCheProps['f' + element.event] = true
             });
         }

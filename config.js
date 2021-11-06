@@ -186,6 +186,13 @@ const BgPage = {
             "type": "compent",
             "compentId": "C",
             "rename": "lol-service",
+            "methods": [
+                {
+                    "type": "bind",
+                    "name": "detail",
+                    "event": "bindDetail"
+                }
+            ],
             "properties": [
                 {
                     "prop": "serverInfo",
