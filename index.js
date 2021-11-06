@@ -1,7 +1,7 @@
 const { temJson } = require('./temp.config')
-const pageConfigData = require('./config.json')
+const { AccountWxPage, BgPage } = require('./config')
 const { setPageData, initCreatePage } = require('./uitls/pageUtil')
-setPageData(pageConfigData, temJson)
-initCreatePage(__dirname + '/account-wx', pageConfigData)
+setPageData(BgPage, temJson)
+initCreatePage(__dirname + '/lol_service', BgPage)
 
 

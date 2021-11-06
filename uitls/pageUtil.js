@@ -1,6 +1,6 @@
 const beautify = require('js-beautify')
 const filesUtil = require('./filesUtil')
-const config = require('../config.json')
+
 const codeFormat = { indent_size: 2, space_in_empty_paren: true }
 // .json, .js , .wxss, .wxml .index.config.js
 function createCompent(pageName, config) {
@@ -170,6 +170,15 @@ function getJsData(childrens, propData = {}, imData = {}, methodData = {}, index
                     let funcname = properties[i].format.funcname
                     let rename = properties[i].format.rename
                     let otherparams = properties[i].format.otherparams
+                    let methodName = rename || '_' + funcname
+                    if (caCheProps['f' + methodName]) throw (`函数名重复：${methodName}`)
+                    methodData.value += `${methodName}(${otherparams}){
+                            let { ${prop} } = this.data
+                            ${prop} =  ${funcname} (${prop}, ${otherparams})
+                            this.setData({ ${prop},});
+                        }, \n`
+                    caCheProps['f' + methodName] = true
+
                     if (caCheProps['i' + path] && imData[path].indexOf(funcname) !== -1) {
                         continue
                     }
@@ -179,15 +188,6 @@ function getJsData(childrens, propData = {}, imData = {}, methodData = {}, index
                         imData[path] = `${funcname}, `
                     }
                     caCheProps['i' + path] = true
-
-                    let methodName = rename || '_' + funcname
-                    if (caCheProps['f' + methodName]) throw (`函数名重复：${methodName}`)
-                    methodData.value += `${methodName}(${otherparams}){
-        let { ${prop} } = this.data
-${prop} =  ${funcname} (${prop}, ${otherparams})
-this.setData({ ${prop},});
-                        }, \n`
-                    caCheProps['f' + methodName] = true
 
                 }
             }
