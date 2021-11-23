@@ -30,4 +30,13 @@ function createCodeMeun(){
   codeImg.attr('id', 'hzCode')
   return codeImg
 }
+/**
+ * 顶部code事件
+ */
+function bindCodeImgEvent() {
+  $('#hzCode').on('click', ()=> {
+    console.log('bindCodeImgEvent====', targetDataObj)
+  })
+}
+
 

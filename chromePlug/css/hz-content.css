@@ -61,6 +61,20 @@
   margin-bottom: 2px;
   cursor: pointer;
 } */
-.hz-frame img:hover {
-  border: 2px dashed #265CF0;
+.hz-frame-block {
+  position: relative;
+}
+.hz-frame-block .del-img {
+  width: 23px;
+  height: 23px;
+  position: absolute;
+  top: 8px;
+  right: 0px;
+  display: none;
+}
+.hz-frame .hz-frame-block:hover .del-img {
+  display: inline-block;
+}
+.hz-frame .hz-frame-block:hover .target-img {
+  border: 2px dashed #265cf0;
 }

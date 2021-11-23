@@ -21,8 +21,7 @@ function setMaterData(materialsData) {
       img.attr({
         "title": data[j].desc,
         "data-type": "mater",
-        "data-key": data[j].key,
-        "data-path": data[j].path,
+        "data-item": JSON.stringify(data[j]),
       })
       frame.append(img)
     }
@@ -36,8 +35,59 @@ function setMaterData(materialsData) {
 function setMaterDrage() {
   $("img[data-type='mater']").draggable({
     connectToSortable: "#hzFrame",
-    helper: "clone",
-    revert: "invalid"
+    revert: "invalid",
+    // helper: "clone",
+    helper: function( event ) {
+      return createHelperDom(event);
+    },
+    stop: (event, ui) => {
+      if (ui.helper && ui.helper.length > 0 ) {
+        let target = $(ui.helper[0]);
+        if (checkFrame(target)) {
+          targetDataObj[target.attr('id')] = {...target.data('item')};
+          bindBlockDelImg();
+        }
+      }
+    },
   });
 }
+/**
+ * 判断是否属于在工作区
+ * @param {} ui 
+ * @returns 
+ */
+function checkFrame(target){
+  let parentId = target.parent().attr('id');
+  return parentId === 'hzFrame'
+}
+function createHelperDom(event) {
+  let target = $(event.target).clone()
+  target.addClass('target-img')
+  let showDiv = $("<div></div>")
+  let id = uuid()
+  showDiv.attr({
+    id,
+    'data-item': JSON.stringify(target.data('item')),
+  })
+  showDiv.addClass('hz-frame-block')
+  let img = createImg('/img/icon/del.png')
+  img.addClass('del-img')
+  img.attr({
+    'data-id': id,
+  })
+  showDiv.append(img)
+  showDiv.append(target)
+  return showDiv;
+}
+/**
+ *  绑定icon组件删除事件
+ */
+function bindBlockDelImg() {
+  $('.del-img').on('click', (event)=> {
+    let { id } = event.currentTarget.dataset;
+    $(`#${id}`).remove();
+    delete targetDataObj[id];
+  })
+}
+
 

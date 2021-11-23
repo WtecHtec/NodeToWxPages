@@ -1,3 +1,4 @@
+
 // 创建一个工作面板
 function createMain() {
     let frame = $('<div></div>')
@@ -15,6 +16,15 @@ function createContent() {
     content.append(createDrawFrame())
     return  content
 }
+/**
+ *  绑定dom事件
+ */
+function bindEvents(){
+  setMaterDrage()
+  setDrawDrage()
+  bindMeunEvent()
+  bindCodeImgEvent()
+}
 
 // 渲染到页面
 async function render() {
@@ -23,13 +33,13 @@ async function render() {
     mainFrame.append(createContent())
     await setFrameVisbi(mainFrame)
     $('body').append(mainFrame)
-    setMaterDrage()
-    setDrawDrage()
-    bindMeunEvent()
+    bindEvents()
 }
+
 // 设置工作面板是否显示
 async function setFrameVisbi(frame) {
     let status = await getStorage('plugStatus')
     status ? frame.show() : frame.hide()
 }
+
 render()
