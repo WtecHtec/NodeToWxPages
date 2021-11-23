@@ -1,5 +1,5 @@
 .hz-main {
-   width: 583px;
+   width: 783px;
    /* height: 727px; */
    position: absolute;
    top: 0px;
@@ -72,9 +72,43 @@
   right: 0px;
   display: none;
 }
+.hz-frame-block .target-img {
+  width: 100%;
+  box-sizing: border-box;
+}
+.hz-frame-block.-img-active {
+  border: 2px solid #265cf0;
+}
 .hz-frame .hz-frame-block:hover .del-img {
   display: inline-block;
 }
 .hz-frame .hz-frame-block:hover .target-img {
   border: 2px dashed #265cf0;
+}
+
+.hz-opt {
+  width: 200px;
+  flex-shrink: 0;
+  height: 100%;
+  padding: 8px;
+}
+.hz-opt-header {
+  height: 40px;
+  text-align: right;
+  display: none;
+}
+.hz-opt-header label {
+  color: #265cf0;
+  cursor: pointer;
+  line-height: 40px;
+  margin-left: 8px;
+}
+
+.hz-opt-content {
+  height: calc(100% - 40px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.hz-opt-content input:focus {
+  outline: 1px solid #265cf0;
 }

@@ -32,8 +32,9 @@
 		{
 		
 			"matches": ["https://codesign.woa.com/*"],
-			"js": ["js/jquery-3.6.js", "js/jquery-ui.js",  "js/storageUtil.js", "js/utils.js", "js/content-data.js", "js/content-message.js", "js/content-topmeun.js",
-        "js/materials-data.js","js/content-materials.js", "js/content-drawframe.js", "js/content-script.js"],
+			"js": ["js/jquery-3.6.js", "js/jquery-ui.js",  "js/storageUtil.js", "js/utils.js", "js/content-data.js", "js/content-message.js",
+         "js/content-topmeun.js","js/materials-data.js", "js/content-materials.js", 
+         "js/content-drawframe.js", "js/content-opt.js", "js/content-script.js"],
 			"css":["css/hz-content.css"],
 			"run_at": "document_end"
 		}

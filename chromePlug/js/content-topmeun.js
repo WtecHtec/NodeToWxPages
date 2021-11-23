@@ -35,8 +35,16 @@ function createCodeMeun(){
  */
 function bindCodeImgEvent() {
   $('#hzCode').on('click', ()=> {
-    console.log('bindCodeImgEvent====', targetDataObj)
+    console.log('bindCodeImgEvent====', JSON.stringify(getCodeByJson()))
   })
 }
 
+function getCodeByJson() {
+  let keys = Object.keys(targetDataObj)
+  let result = JSON.parse(JSON.stringify(defaultPageInfo))
+  keys.forEach(item=> {
+    result.childrens.push(targetDataObj[item])
+  })
+  return result
+}
 

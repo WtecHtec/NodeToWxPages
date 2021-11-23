@@ -27,7 +27,30 @@ const materialsData = [
         desc: '服务数据',
         img: 'g-cell.png',
       },
-      
     ],
-  }
+  },
+  {
+    name: 'pkgTem分包',
+    desc: 'pkgTem分包',
+    data: [
+      {
+        cname:'empty',
+        cpath: '/tempages/components/view-empty/view-empty',
+        type: "compent",
+        key: 'g-empty',
+        desc: '数据空状态',
+        img: 'pkgTem-empty.png',
+        properties: [
+          {
+            prop: "pt",
+            valType: 'number',
+          },
+          {
+            prop: "desc",
+            valType: 'string',
+          },
+        ],
+      },
+    ],
+  },
 ]

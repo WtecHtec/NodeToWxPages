@@ -44,8 +44,10 @@ function setMaterDrage() {
       if (ui.helper && ui.helper.length > 0 ) {
         let target = $(ui.helper[0]);
         if (checkFrame(target)) {
-          targetDataObj[target.attr('id')] = {...target.data('item')};
+          let id = target.attr('id')
+          targetDataObj[id] = {...target.data('item'), id};
           bindBlockDelImg();
+          bindTargetBlock();
         }
       }
     },
@@ -78,16 +80,6 @@ function createHelperDom(event) {
   showDiv.append(img)
   showDiv.append(target)
   return showDiv;
-}
-/**
- *  绑定icon组件删除事件
- */
-function bindBlockDelImg() {
-  $('.del-img').on('click', (event)=> {
-    let { id } = event.currentTarget.dataset;
-    $(`#${id}`).remove();
-    delete targetDataObj[id];
-  })
 }
 
 

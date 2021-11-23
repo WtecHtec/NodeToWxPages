@@ -14,6 +14,7 @@ function createContent() {
     content.addClass('hz-content')
     content.append(createMater())
     content.append(createDrawFrame())
+    content.append(createOptDom())
     return  content
 }
 /**
@@ -24,6 +25,7 @@ function bindEvents(){
   setDrawDrage()
   bindMeunEvent()
   bindCodeImgEvent()
+  bindPropsSaveBtn()
 }
 
 // 渲染到页面

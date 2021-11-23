@@ -6,6 +6,11 @@ function createImg(url){
   return image
 }
 
+function checkEvents(cache, key) {
+  if(cache[key]) return false
+  cache[key] = true
+  return false
+}
 function uuid() {
   var s = [];
   var hexDigits = "0123456789abcdef";

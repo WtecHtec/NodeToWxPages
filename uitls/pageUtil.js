@@ -78,10 +78,12 @@ function getWxmlString(result, childrens) {
         let properties = childrens[i].properties
         if (properties && properties.length > 0) {
             properties.forEach(element => {
-                if (element.variable) {
-                    result += ` ${element.prop}="{{${element.rename || element.prop}}}" `
-                } else {
-                    result += ` ${element.prop}="${typeof element.value === 'boolean' ? `{{${element.value}}}` : element.value}" `
+                if (element.value) {
+                    if (element.variable) {
+                        result += ` ${element.prop}="{{${element.rename || element.prop}}}" `
+                    } else {
+                        result += ` ${element.prop}="${typeof element.value === 'boolean' ? `{{${element.value}}}` : element.value}" `
+                    }
                 }
             });
         }
@@ -95,7 +97,6 @@ function getWxmlString(result, childrens) {
 
         result += ">\n"
         if (childrens[i].childrens && childrens[i].childrens.length > 0) {
-
             result += getWxml(childrens[i].childrens) + `</${childrens[i].rename || childrens[i].cname || 'view'}>\n`
         } else {
             result += `</${childrens[i].rename || childrens[i].cname || 'view'}>\n`
@@ -125,11 +126,12 @@ function createJs(pageName, config) {
     }
 
     let configData = getIndexConfigData(indexConfigData)
-    createIndexConfig(pageName, configData)
+    if (configData) {
+        createIndexConfig(pageName, configData)
+    }
     jsData = jsData.replace(/###import###/g, importStr)
     jsData = jsData.replace(/###data###/g, getpropData(properties))
     jsData = jsData.replace(/###methods###/g, methodData.value)
-
     filesUtil.writeFile(`${pageName}/index.js`, beautify.js(jsData, codeFormat))
 }
 
