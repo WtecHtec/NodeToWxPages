@@ -35,16 +35,28 @@ function createCodeMeun(){
  */
 function bindCodeImgEvent() {
   $('#hzCode').on('click', ()=> {
-    console.log('bindCodeImgEvent====', JSON.stringify(getCodeByJson()))
+    let pageData = JSON.stringify(getCodeByJson())
+    console.log('bindCodeImgEvent====', pageData)
+    getServer()
   })
 }
 
 function getCodeByJson() {
   let keys = Object.keys(targetDataObj)
+  if (keys.length === 0) return null
   let result = JSON.parse(JSON.stringify(defaultPageInfo))
   keys.forEach(item=> {
     result.childrens.push(targetDataObj[item])
   })
   return result
+}
+
+function getServer() {
+    $.ajax({
+        url: 'http://localhost:3000',
+        success: function (res) {
+            console.log('getServer ===', res)
+        }
+    })
 }
 
