@@ -60,9 +60,22 @@ const createZip = function (zipPath, filePath) {
     }
   })
 }
+
+const checkFilePath = function (filePath) {
+  return new Promise(function (resovle, reject) {
+    fs.exists(filePath, (exists) => {
+      if (exists) {
+        resovle(true)
+      } else {
+        resovle(false)
+      }
+    });
+  })
+}
 module.exports = {
   createDir,
   writeFile,
   readFile,
   createZip,
+  checkFilePath,
 }

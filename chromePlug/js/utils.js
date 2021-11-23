@@ -24,3 +24,16 @@ function uuid() {
   var uuid = s.join("");
   return uuid;
 }
+const Config = {
+  baseUrl: 'http://localhost:3000'
+}
+
+function download(file, ext = 'zip') {
+  var a = document.createElement("a");
+  var url = Config.baseUrl + '/export/' + file;
+  var filename = file + ext;
+  a.href = url;
+  a.download = filename;
+  a.click();
+}
+

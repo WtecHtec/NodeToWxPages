@@ -37,7 +37,7 @@ function bindCodeImgEvent() {
   $('#hzCode').on('click', ()=> {
     let pageData = JSON.stringify(getCodeByJson())
     console.log('bindCodeImgEvent====', pageData)
-    getServer()
+    getServer(pageData, new Date().getTime())
   })
 }
 
@@ -51,12 +51,25 @@ function getCodeByJson() {
   return result
 }
 
-function getServer() {
+function getServer(pageData, name) {
     $.ajax({
-        url: 'http://localhost:3000',
+        url: 'http://localhost:3000/export',
+        type: 'POST',
+        contentType: "application/json",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify({
+          name,
+          data: JSON.parse(pageData)
+        }),
         success: function (res) {
             console.log('getServer ===', res)
-        }
+            // window.open('http://localhost:3000/download', '_self')
+            if(res && res.status === 200 ) {
+              download(name)
+            }
+        },
     })
 }
 

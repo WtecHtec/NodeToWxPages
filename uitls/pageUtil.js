@@ -3,13 +3,13 @@ const filesUtil = require('./filesUtil')
 
 const codeFormat = { indent_size: 2, space_in_empty_paren: true }
 // .json, .js , .wxss, .wxml .index.config.js
-function createCompent(pageName, config) {
+async function createCompent(pageName, config) {
     let comData = `{\n"usingComponents": {\n###components####\n}\n}`
     const caChe = {}
     let result = getCompent(config, caChe)
     result = result.substring(0, result.length - 2)
     comData = comData.replace(/###components####/g, result)
-    filesUtil.writeFile(`${pageName}/index.json`, beautify.js(comData, codeFormat))
+    await filesUtil.writeFile(`${pageName}/index.json`, beautify.js(comData, codeFormat))
 }
 
 function getCompent(config, caChe = {}) {
@@ -41,14 +41,14 @@ function getCompentJson(result, childrens, caChe) {
     return result
 }
 
-function createWxss(pageName) {
+async function createWxss(pageName) {
     let wxssData = ``
-    filesUtil.writeFile(`${pageName}/index.wxss`, beautify.css(wxssData, codeFormat))
+    await filesUtil.writeFile(`${pageName}/index.wxss`, beautify.css(wxssData, codeFormat))
 }
 
-function createWxml(pageName, config) {
+async function createWxml(pageName, config) {
     let wxmlData = getWxml(config)
-    filesUtil.writeFile(`${pageName}/index.wxml`, beautify.html(wxmlData, codeFormat))
+    await filesUtil.writeFile(`${pageName}/index.wxml`, beautify.html(wxmlData, codeFormat))
 }
 
 function getWxml(config) {
@@ -105,7 +105,7 @@ function getWxmlString(result, childrens) {
     return result
 }
 
-function createJs(pageName, config) {
+async function createJs(pageName, config) {
     let jsData = `
         const app = getApp();
         ###import###
@@ -132,11 +132,11 @@ function createJs(pageName, config) {
     jsData = jsData.replace(/###import###/g, importStr)
     jsData = jsData.replace(/###data###/g, getpropData(properties))
     jsData = jsData.replace(/###methods###/g, methodData.value)
-    filesUtil.writeFile(`${pageName}/index.js`, beautify.js(jsData, codeFormat))
+    await filesUtil.writeFile(`${pageName}/index.js`, beautify.js(jsData, codeFormat))
 }
 
-function createIndexConfig(pageName, data) {
-    filesUtil.writeFile(`${pageName}/index.config.js`, beautify.js(data, codeFormat))
+async function createIndexConfig(pageName, data) {
+    await filesUtil.writeFile(`${pageName}/index.config.js`, beautify.js(data, codeFormat))
 }
 
 function getJsData(childrens, propData = {}, imData = {}, methodData = {}, indexConfigData = {}, caCheProps = {},) {
@@ -274,10 +274,10 @@ function setPageData(config, tempJson) {
 
 async function initCreatePage(pageName, config) {
     await filesUtil.createDir(pageName)
-    createCompent(pageName, config)
-    createWxss(pageName, config)
-    createWxml(pageName, config)
-    createJs(pageName, config)
+    await createCompent(pageName, config)
+    await createWxss(pageName, config)
+    await createWxml(pageName, config)
+    await createJs(pageName, config)
 }
 
 module.exports = {
