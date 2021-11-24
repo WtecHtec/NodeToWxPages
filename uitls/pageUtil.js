@@ -79,7 +79,7 @@ function getWxmlString(result, childrens) {
         if (properties && properties.length > 0) {
             properties.forEach(element => {
                 if (element.value) {
-                    if (element.variable) {
+                    if (element.variable == 'true') {
                         result += ` ${element.prop}="{{${element.rename || element.prop}}}" `
                     } else {
                         result += ` ${element.prop}="${typeof element.value === 'boolean' ? `{{${element.value}}}` : element.value}" `
@@ -145,12 +145,12 @@ function getJsData(childrens, propData = {}, imData = {}, methodData = {}, index
         let properties = childrens[i].properties
         if (properties && properties.length > 0) {
             for (let i = 0; i < properties.length; i++) {
-                if (!properties[i].variable) continue
+                if (!(properties[i].variable == 'true')) continue
                 let prop = properties[i].rename || properties[i].prop
                 if (caCheProps[prop]) {
                     throw (`变量重复：${prop}`)
                 }
-                if (properties[i].isImport) {
+                if (properties[i].isImport == 'true') {
                     let CONFIGPROP = prop.toLocaleUpperCase()
                     if (imData['./index.config.js'] && imData['./index.config.js'].indexOf(CONFIGPROP) === -1) {
                         imData['./index.config.js'] += `${CONFIGPROP}, `
@@ -212,7 +212,7 @@ function getImportData(imData, isImport = false) {
     let result = ''
     for (let i = 0; i < len; i++) {
         let key = keys[i]
-        if (isImport || key === './index.config.js') {
+        if (isImport  == 'true' || key === './index.config.js') {
             result += `import { ${imData[key]} } from '${key}'\n`
         } else {
             result += `const { ${imData[key]} } = app.require('${key}') \n`

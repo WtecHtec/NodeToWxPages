@@ -112,3 +112,13 @@
 .hz-opt-content input:focus {
   outline: 1px solid #265cf0;
 }
+.hz-opt-content [data-input] {
+  width: 100%;
+}
+.hz-opt-prop {
+  padding: 0px 8px 8px;
+  border: 2px solid #fff;
+  margin: 8px 0px;
+  background-color: #f2f6f6;
+}
+

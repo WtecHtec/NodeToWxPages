@@ -10,6 +10,13 @@ const materialsData = [
         key: 'g-status',
         desc: '数据状态',
         img: 'g-status.png',
+        properties: [
+          {
+            prop: 'accountData',
+            propLevel: 'data',
+            valType: 'object',
+          },
+        ],
       },
       {
         cname:'service',
@@ -18,6 +25,7 @@ const materialsData = [
         key: 'g-service',
         desc: '服务数据',
         img: 'g-service.png',
+        
       },
       {
         cname:'cell',
@@ -26,6 +34,12 @@ const materialsData = [
         key: 'g-cell',
         desc: '服务数据',
         img: 'g-cell.png',
+        properties: [
+          {
+            prop: 'title',
+            valType: 'string',
+          },
+        ],
       },
     ],
   },
