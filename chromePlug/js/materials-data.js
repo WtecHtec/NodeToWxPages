@@ -63,6 +63,11 @@ const materialsData = [
             prop: "desc",
             valType: 'string',
           },
+          {  
+            prop: 'icon',
+            valType: 'string',
+            values: ['commentempty', 'funcbeta']
+          }
         ],
       },
     ],

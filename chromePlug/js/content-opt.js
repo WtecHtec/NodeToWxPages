@@ -49,7 +49,11 @@ function getPropDom(props) {
     } else if (element.propLevel === 'component') {
       setPropInputText(frame, element, `${element.prop}(${element.valType || 'any'})`)
     } else  {
-      setPropInputText(frame, element, `${element.prop}(${element.valType || 'any'})`, 'value')
+      if(element.values && Array.isArray(element.values) && element.values.length > 0 ) {
+        setPropByData(frame, element, `${element.prop}(${element.valType || 'any'})`, 'value', 'select', element.values)
+      } else {
+        setPropInputText(frame, element, `${element.prop}(${element.valType || 'any'})`, 'value')
+      }
     } 
   });
   return frame
@@ -64,10 +68,15 @@ function setPropLeveByData(frame, element) {
   let label = getLabel(element.prop)
   propDiv.append(label)
   propDiv.append("<br/>")
-  setPropByData(propDiv, element, `value(${element.valType || 'any'})`, 'value', 'text')
+  console.log(element.values)
+  if(element.values && Array.isArray(element.values) && element.values.length > 0 ) {
+    setPropByData(propDiv, element, `value(${element.valType || 'any'})`, 'value', 'select', element.values)
+  } else {
+    setPropByData(propDiv, element, `value(${element.valType || 'any'})`, 'value', 'text')
+  }
   setPropByData(propDiv, element, `rename(any)`, 'rename', 'text')
-  setPropByData(propDiv, element, `variable(bool)`, 'variable', 'bool', [false, true])
-  setPropByData(propDiv, element, `isImport(bool)`, 'isImport', 'bool', [false, true])
+  setPropByData(propDiv, element, `variable(bool)`, 'variable', 'select', [false, true])
+  setPropByData(propDiv, element, `isImport(bool)`, 'isImport', 'select', [false, true])
   frame.append(propDiv)
 }
 /**
@@ -81,7 +90,7 @@ function setPropByData(frame, element, labelText, key, type, values) {
   if (!element[key]) element[key] = ''
   let label = getLabel(labelText)
   let input = null
-  if (type === 'bool') {
+  if (type === 'select') {
     input = getSelectInput(element, currentTargetData.id, key, values)
   } else {
     input = getTextInput(element, currentTargetData.id, key)
@@ -162,7 +171,7 @@ function setInputValByTargetData(input, propItme, targetData, key) {
     let properties = currentTargetData.properties || []
     let prop = properties.find((f) => f.prop === propItme.prop)
     value = key ? (prop[key] || '') : (prop.value || '')
-    console.log('setInputValByTargetData',prop, value, key)
+    console.log('value', value,  key)
   }
   input.val(value)
 }
